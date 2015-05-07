@@ -1,0 +1,14 @@
+Rows <input type="number" ng-model="mainCtrl.model.rows"/>
+<br/>
+Columns <input type="number" ng-model="mainCtrl.model.cols"/>
+<button ng-click="generateData()">Generate Data</button>
+<button ng-click="render()">Render</button>
+  
+<p>My Table</p>
+<table>
+  <tr ng-repeat="row in mainCtrl.model.data">
+    <td ng-repeat="col in row">
+      {{::col}}
+    </td>
+  </tr>
+</table>
