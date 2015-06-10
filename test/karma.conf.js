@@ -28,7 +28,8 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/react/react.js',
-      'bower_components/fixed-data-table/dist/fixed-data-table.min.js',
+      'bower_components/fixed-data-table/dist/fixed-data-table.js',
+      'bower_components/underscore/underscore.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

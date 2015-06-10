@@ -31,4 +31,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+      
+    _.templateSettings.variable = "model";
   });

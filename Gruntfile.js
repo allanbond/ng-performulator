@@ -82,6 +82,10 @@ module.exports = function (grunt) {
                 connect.static('./bower_components')
               ),
               connect().use(
+                '/jsx',
+                connect.static('./.tmp/jsx')
+              ),
+              connect().use(
                 '/app/styles',
                 connect.static('./app/styles')
               ),
@@ -196,6 +200,17 @@ module.exports = function (grunt) {
               }
             }
           }
+      }
+    },
+
+    // Compiles JSX files to plain javascript
+    react: {
+      files: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/jsx',
+        src: ['**/*.jsx'],
+        dest: '.tmp/jsx',
+        ext: '.js'
       }
     },
 
@@ -393,6 +408,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'react',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
@@ -417,6 +433,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'react',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

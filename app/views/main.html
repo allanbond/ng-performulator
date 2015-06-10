@@ -1,14 +1,45 @@
-Rows <input type="number" ng-model="mainCtrl.model.rows"/>
-<br/>
-Columns <input type="number" ng-model="mainCtrl.model.cols"/>
-<button ng-click="generateData()">Generate Data</button>
-<button ng-click="render()">Render</button>
+<div class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2">Rows</label>
+    <div class="col-sm-10">
+      <input  ng-model="mainCtrl.model.rows" type="number" class="form-control" placeholder="Number of rows"/>
+    </div> 
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Columns</label>
+    <div class="col-sm-10">
+      <input ng-model="mainCtrl.model.cols" type="number" class="form-control" placeholder="Number of columns"/>
+    </div>
+  </div> 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button ng-click="generateData(mainCtrl.model.rows, mainCtrl.model.cols)" class="btn btn-default">Generate Data</button>
+      <button ng-click="renderAngular()" class="btn btn-default">Render Angular</button>
+      <button ng-click="renderDirect()" class="btn btn-default">Render Direct</button>
+      <button ng-click="renderReact()" class="btn btn-default">Render React</button>
+    </div>
+</div>
+ 
+
   
-<p>My Table</p>
-<table>
-  <tr ng-repeat="row in mainCtrl.model.data">
-    <td ng-repeat="col in row">
-      {{::col}}
-    </td>
-  </tr>
-</table>
+
+<div ng-if="mainCtrl.model.renderTime">Render Time: {{mainCtrl.model.renderTime / 1000}} seconds</div>  
+
+<div ng-if="mainCtrl.tableType === 'direct'">
+  <fast-table model="mainCtrl.fastTableModel.data"></fast-table>
+</div>
+
+<div ng-if="mainCtrl.tableType === 'angular'">
+  <h4>Angular Table</h4>
+  <table>
+    <tr ng-repeat="row in mainCtrl.model.data track by $index">
+      <td ng-repeat="col in row track by $index">
+        {{::col}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div ng-if="mainCtrl.tableType === 'react'">
+  <react-table model="mainCtrl.reactTableModel.data"></react-table>
+</div>
